@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#faf7f0">
+  <meta name="description" content="与猫 Agent 恋爱互动漫画。听听初夏和周屿的烦恼，给一个建议，看看故事会怎样继续。">
+  <title>与猫 · 六段恋爱日常</title>
+  <link rel="stylesheet" href="assets/styles.css?v=c3dce1221680">
+  <link rel="stylesheet" href="assets/report.css?v=044a18730c0d">
+  <script defer src="assets/story-data.js?v=79f54aeb9bdb"></script>
+  <script defer src="assets/report-data.js?v=37ef27719c18"></script>
+  <script defer src="assets/report-engine.js?v=a60591b2268f"></script>
+  <script defer src="assets/report-ui.js?v=8fcd8499b6ff"></script>
+  <script defer src="assets/app.js?v=226865ae771f"></script>
+</head>
+<body>
+  <svg class="icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-cat" viewBox="0 0 32 32"><path d="M6 13 5 4l9 5h4l9-5-1 9c3 3 4 6 2 9-2 4-7 6-12 6S6 26 4 22c-2-3-1-6 2-9Z" fill="currentColor"/><path d="M11 17h.1M21 17h.1" stroke="#faf7f0" stroke-width="3" stroke-linecap="round"/><path d="m14 21 2 2 2-2" fill="none" stroke="#faf7f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M5 8h14M9 16h10"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5M7 10h6m-3-3v6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></symbol>
+  </defs></svg>
+  <main class="app-shell" id="app">
+      <header class="app-header">
+        <a class="app-brand" href="#" data-action="home" aria-label="回到与猫封面"><svg><use href="#i-cat"/></svg><span>与猫</span></a>
+        <span class="header-tag" id="header-tag">恋爱日常 · 试玩</span>
+        <div class="header-actions"><button class="icon-button" data-action="chapters" aria-label="打开章节目录"><svg class="icon"><use href="#i-book"/></svg></button><button class="icon-button" id="history-btn" data-action="history" aria-label="查看对话记录" hidden><svg class="icon"><use href="#i-history"/></svg></button><button class="icon-button" data-action="menu" aria-label="打开菜单"><svg class="icon"><use href="#i-menu"/></svg></button></div>
+      </header>
+      <div id="screen" class="screen"></div>
+  </main>
+  <dialog id="history-dialog" class="sheet" aria-labelledby="history-title"><div class="sheet-head"><div><span class="eyebrow">OUR CONVERSATION</span><h2 id="history-title">刚才聊到这里</h2></div><button class="icon-button" data-close="history-dialog" aria-label="关闭对话记录"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="history-list" class="history-list"></div></dialog>
+  <dialog id="menu-dialog" class="sheet menu-sheet" aria-labelledby="menu-title"><div class="sheet-head"><h2 id="menu-title">稍微停一会儿</h2><button class="icon-button" data-close="menu-dialog" aria-label="关闭菜单"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="menu-items"><button data-action="home">回到日常目录<span>保留当前进度 ↗</span></button><button data-action="chapters">切换章节<span>六段日常，自由选读 →</span></button><button data-action="restart">本题从头开始<span>重新体验当前章节 →</span></button><button data-action="font" id="font-btn">阅读字号<span>标准 / 大号</span></button><button data-action="report">完整恋爱报告<span>查看三部分完整解读 →</span></button><button data-action="share-game">分享给朋友<span>邀请朋友也给一个建议 ↗</span></button></div><p class="menu-note" id="save-note">进度自动保存在这个浏览器里。</p></dialog>
+<dialog id="chapters-dialog" class="sheet chapters-sheet" aria-labelledby="chapters-title"><div class="sheet-head"><div><span class="eyebrow">SIX LITTLE STORIES</span><h2 id="chapters-title">从哪段日常开始？</h2></div><button class="icon-button" data-close="chapters-dialog" aria-label="关闭章节目录"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="chapter-dialog-grid" class="chapter-dialog-grid"></div></dialog>
+  <dialog id="zoom-dialog" class="zoom-dialog" aria-label="漫画大图"><div class="zoom-toolbar"><span>漫画全幅</span><div><button data-action="zoom-size" class="zoom-size-button">放大</button><button class="icon-button" data-close="zoom-dialog" aria-label="关闭大图"><svg class="icon"><use href="#i-close"/></svg></button></div></div><div id="zoom-scroll" class="zoom-scroll"><img id="zoom-image" alt="漫画放大图"></div><p class="zoom-hint">可放大后滑动查看 · 手机支持双指缩放</p></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript>请启用 JavaScript 后体验互动剧情。</noscript>
+</body>
+</html>
