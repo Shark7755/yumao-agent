@@ -229,7 +229,7 @@
     else if(action==='font'){
       fontLarge=!fontLarge;render();$('font-btn').innerHTML=`阅读字号<span>${fontLarge?'大号 · 切回标准':'标准 · 切到大号'}</span>`;toast(fontLarge?'已切换为大号文字':'已切换为标准文字');
       const stream=screen.querySelector('.dialogue-stream');if(stream)revealLatest(stream,false);
-    }else if(action==='zoom')showZoom();
+    }else if(action==='zoom'){if(target.closest('.image-error')){const img=target.querySelector('img');const src=img.getAttribute('src').split('?')[0];img.src=src+'?retry='+Date.now();watchFrame();}else showZoom();}
     else if(action==='zoom-size'){const large=$('zoom-scroll').classList.toggle('enlarged');target.textContent=large?'还原':'放大';if(!large)$('zoom-scroll').scrollTo(0,0);}
   });
   document.addEventListener('keydown',e=>{
